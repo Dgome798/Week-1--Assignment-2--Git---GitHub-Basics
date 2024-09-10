@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- need meta viewport tag to allow for css media queries on mobile -->
+    <meta name="viewport" content="width=devive-width,initial-scale=1">
+    <tittle>React Import External Json</tittle>
+<!-- local css -->
+    <style>
+        ol {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+    </style>
+<!-- load jquery to use for external jspn loading -->    
+    <script src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+<!-- load React - note when deploying, replace "development.js" with "priduction.min.js"--> 
+    <script src="https://unpkg.com/react/umd/react.development.js" crossorigin></script> 
+    <script src="http://unpkg.com/react-dom.umd/react-dom.development.js" crossorigin></script>  
+<!-- load babel transpiler to convert React's JSK markup to pure Javascript
+     Note: we only need babel loaded in the brower if we are not using a build system
+     where babel would save pure JS files to be loeaded by the brower instead-->   
+     <script src="https://unpkg.com/@babel/standalone@7.22.10/babel.min.js"></script> 
+</head>
+<body>
+    <h1>Hello World!</h1>
+
+    <div id="myApp"></div>
+<!-- load our custom script with react component-->
+    <script type="text/babel">
+        "use strict";
+        // define a react page component using JSX
+        return (
+            <div>
+                <ol>
+                   {
+                    // use map() to loop thru array passed in props.list
+                    props.list.map(
+                        // copy current array value into item and pass to arrow funtion
+                        // when we define a function inside a JSF expression, we have to use 
+                        // round parens instead of curlies to contain the function's code block
+                        (item,index) => (
+                            <li key={index}>
+                              <a href={item.link}>
+                                {item.firstname}
+                            </li>
+                        )                  
+                      )
+                   } 
+                </ol>   
+            </div>
+        );
+        
+    // use jQuery to load the JSON data form our server
+    $.get.JSON(
+        'x', // url for jquery to ask for json from
+        function(jsonFromJquery) {
+            // after JSON loaded, call react createRoot() to identify root HTML element for app
+            //craeting a root React element
+            const myRoot = ReactDOM.createRoot( document.getElementById('myApp'));
+            // then call react render() to output JSX component into existing root element 
+            myRoot.render(
+                <ProjectList list={jsonFromJquery} />
+            );
+        }
+    );
+
+
+        
+    </script>
+</body>
+</html>
