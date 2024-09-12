@@ -44,8 +44,8 @@ const requestListener = function(req, res) {
 const server = http.createServer(requestListener);
 
 //define the TCP port and IP address to tell our http server to listen to
-const host = "0.0.0.0";
-const port = "8080";
+const host = "127.0.0.1"; // this ip adress reprsents localhost - this computer
+const port = "3000"; // typical port node.js runs on
 
 //call the listen() method to start listening to http requests
 server.listen(

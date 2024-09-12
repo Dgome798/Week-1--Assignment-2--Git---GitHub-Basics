@@ -43,6 +43,7 @@
                             <li key={index}>
                               <a href={item.link}>
                                 {item.firstname}
+                                </a>
                             </li>
                         )                  
                       )
@@ -51,8 +52,9 @@
             </div>
         );
         
+        
     // use jQuery to load the JSON data form our server
-    $.get.JSON(
+    $.getJSON(
         'x', // url for jquery to ask for json from
         function(jsonFromJquery) {
             // after JSON loaded, call react createRoot() to identify root HTML element for app
