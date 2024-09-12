@@ -26,7 +26,7 @@ const requestListener = function(req, res) {
                 res.end(contents);
             }
 
-        )
+        );
     } else {
 
         fs.readFile(__dirname + "data.json")
