@@ -29,7 +29,7 @@ const requestListener = function(req, res) {
         );
     } else {
 
-        fs.readFile(__dirname + "data.json")
+        fs.readFile( __dirname + "/data.json")
         .then(contents =>{
 
             res.Header("content-Type", "application/json, charset=UTF-8");
